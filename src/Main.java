@@ -42,25 +42,19 @@ public class Main {
      */
     public static String compressString(String stringToCompress) {
         String compressedString = "";
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a string");
-        String str = scanner.nextLine();
         int countConsecutive = 0;
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < stringToCompress.length(); i++) {
             countConsecutive++;
             // If next character is different than current append this char to result
-            if (i + 1 >= str.length() || str.charAt(i) != str.charAt(i + 1)) {
-                compressedString = compressedString + str.charAt(i) + countConsecutive;
+            if (i + 1 >= stringToCompress.length() || stringToCompress.charAt(i) != stringToCompress.charAt(i + 1)) {
+                compressedString = compressedString + stringToCompress.charAt(i) + countConsecutive;
                 countConsecutive = 0;
             }
         }
-        System.out.println("The compressed string: " + compressedString);
-
         /*
         TODO: Your code for part B1 is here...
         Note: you may change the given code, but you must not change the signature of the method.
          */
-
         return compressedString;
     }
 
@@ -76,14 +70,26 @@ public class Main {
      * @return The decompressed string
      */
     public static String decompressString(String compressedString) {
-        String decompressedString = "";
-
-        /*
-        TODO: Your code for part B2 is here...
-        Note: you may change the given code, but you must not change the signature of the method.
-         */
-
-        return decompressedString;
+        StringBuilder decompressedString = new StringBuilder();
+        StringBuilder temp_string = new StringBuilder();
+        for (int j = 0; j < compressedString.length(); j++) {
+            int i = 0, NumOfCh = 0;
+            if (((int) compressedString.charAt(j) <= 48 || ((int) compressedString.charAt(j)) > 57)) {
+                temp_string.append(compressedString.charAt(j));
+            } else {
+                while ((i+j) < compressedString.length() && (int) compressedString.charAt(i + j) < 58 && (int) compressedString.charAt(i + j) > 47 ) {
+                    NumOfCh = NumOfCh * ((int) Math.pow(10,i))+( (int)compressedString.charAt(i + j)-48) ;
+                    i++;
+                }
+                for (int k = 0; k < NumOfCh; k++) {
+                    decompressedString.append(temp_string);
+                }
+                j = i + j - 1;
+                temp_string.setLength(0);
+            }
+        }
+        String decompressed = "" + decompressedString;
+        return decompressed;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
