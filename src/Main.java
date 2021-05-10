@@ -12,6 +12,7 @@ public class Main {
      */
     public static void gradeMessage(int grade) {
         switch (grade/10){
+            // dividing the grade by 10 helps categorizing the grades
             case 10:
                 System.out.println("Excellent");
                 break;
@@ -51,10 +52,6 @@ public class Main {
                 countConsecutive = 0;
             }
         }
-        /*
-        TODO: Your code for part B1 is here...
-        Note: you may change the given code, but you must not change the signature of the method.
-         */
         return compressedString;
     }
 
@@ -74,11 +71,21 @@ public class Main {
         StringBuilder temp_string = new StringBuilder();
         for (int j = 0; j < compressedString.length(); j++) {
             int i = 0, NumOfCh = 0;
+            //if next char isn't a number
             if (((int) compressedString.charAt(j) <= 48 || ((int) compressedString.charAt(j)) > 57)) {
                 temp_string.append(compressedString.charAt(j));
             } else {
-                while ((i+j) < compressedString.length() && (int) compressedString.charAt(i + j) < 58 && (int) compressedString.charAt(i + j) > 47 ) {
-                    NumOfCh = NumOfCh * ((int) Math.pow(10,i))+( (int)compressedString.charAt(i + j)-48) ;
+                //while next char is number
+                while ((i+j) < compressedString.length()
+                        && (int) compressedString.charAt(i + j) < 58
+                        && (int) compressedString.charAt(i + j) > 47 ) {
+                    //first time to add to NumOfch
+                    if(NumOfCh == 0){
+                        NumOfCh = NumOfCh +((int) compressedString.charAt(i + j) - 48);
+                    }
+                    else {
+                        NumOfCh = (NumOfCh * 10) + ((int) compressedString.charAt(i + j) - 48);
+                    }
                     i++;
                 }
                 for (int k = 0; k < NumOfCh; k++) {
