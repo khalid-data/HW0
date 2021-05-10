@@ -75,7 +75,7 @@ public class Main {
             if (((int) compressedString.charAt(j) <= 48 || ((int) compressedString.charAt(j)) > 57)) {
                 temp_string.append(compressedString.charAt(j));
             } else {
-                //while next char is number
+                //while next char is number, save the whole number as an int
                 while ((i+j) < compressedString.length()
                         && (int) compressedString.charAt(i + j) < 58
                         && (int) compressedString.charAt(i + j) > 47 ) {
