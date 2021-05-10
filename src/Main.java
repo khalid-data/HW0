@@ -46,7 +46,7 @@ public class Main {
         int countConsecutive = 0;
         for (int i = 0; i < stringToCompress.length(); i++) {
             countConsecutive++;
-            // If next character is different than current append this char to result
+            /** If next character is different than current append this char to result */
             if (i + 1 >= stringToCompress.length() || stringToCompress.charAt(i) != stringToCompress.charAt(i + 1)) {
                 compressedString = compressedString + stringToCompress.charAt(i) + countConsecutive;
                 countConsecutive = 0;
@@ -75,7 +75,7 @@ public class Main {
             if (((int) compressedString.charAt(j) <= 48 || ((int) compressedString.charAt(j)) > 57)) {
                 temp_string.append(compressedString.charAt(j));
             } else {
-                //while next char is number, save the whole number as an int
+                /** while next char is number, save the whole number as an int */
                 while ((i+j) < compressedString.length()
                         && (int) compressedString.charAt(i + j) < 58
                         && (int) compressedString.charAt(i + j) > 47 ) {
